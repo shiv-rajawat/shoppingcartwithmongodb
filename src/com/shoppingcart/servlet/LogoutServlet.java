@@ -43,8 +43,8 @@ public class LogoutServlet extends HttpServlet {
 	}
 	 public void processRequest(HttpServletRequest request, HttpServletResponse response)  
 			    throws ServletException, IOException {  
-			OrderManagerService oms=new OrderManagerService();
-				oms.deleteOrder();
+			OrderManagerService orderManagerService=new OrderManagerService();
+				orderManagerService.deleteOrder();
 				
 			} 
 

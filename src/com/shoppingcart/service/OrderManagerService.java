@@ -9,18 +9,18 @@ import com.shoppingcart.model.Cart;
 public class OrderManagerService {
 	
 	
-	OrderManagerDAO OD=new OrderManagerDAO();
+	OrderManagerDAO orderManagerDAO=new OrderManagerDAO();
 	public List<Cart> displayOrder() throws SQLException {
-		return OD.displayOrder();
+		return orderManagerDAO.displayOrder();
 
 	}
 	
-	public void insertOrder(Cart c) throws SQLException {
-		OD.insertOrders(c);
+	public void insertOrder(Cart cart) throws SQLException {
+		orderManagerDAO.insertOrders(cart);
 	}
 	
 	public void deleteOrder() {
-		   OD.clearOrders();
+		   orderManagerDAO.clearOrders();
 		}
 	
 }

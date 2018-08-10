@@ -47,16 +47,15 @@ public class CartServlet extends HttpServlet {
 	 public void processRequest(HttpServletRequest request, HttpServletResponse response)  
 			    throws ServletException, IOException {  
 			
-			OrderManagerService oms=new OrderManagerService();
+			OrderManagerService orderManagerService=new OrderManagerService();
 		    
 	        try {
-	        	List<Cart> arrC = new ArrayList<Cart>();
-	        	arrC=oms.displayOrder();
-				RequestDispatcher rd=request.getRequestDispatcher("Cart.jsp");
-				rd.include(request,response);
+	        	List<Cart> list = new ArrayList<Cart>();
+	        	list=orderManagerService.displayOrder();
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("Cart.jsp");
+				requestDispatcher.include(request,response);
 			} catch (SQLException e) {
 				System.out.println("cannot insert order");
-				
 				e.printStackTrace();
 			} 
 	        

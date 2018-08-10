@@ -13,14 +13,14 @@ import com.shoppingcart.model.Customer;
 
 public class LoginDAO {
 
-	public boolean validateUser(Customer c){  
+	public boolean validateUser(Customer customer){  
 		boolean status=false; 
 			
 		try{  
-			 MongoClient mongo=new MongoClient("localhost",27017);
-			 MongoDatabase mydatabase = mongo.getDatabase("cochin");
-			 MongoCollection<Document> coll = mydatabase.getCollection("UserDetail");
-			 FindIterable<Document> docs = coll.find();
+			 MongoClient mongoClient=new MongoClient("localhost",27017);
+			 MongoDatabase mongoDatabase = mongoClient.getDatabase("cochin");
+			 MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("UserDetail");
+			 FindIterable<Document> docs = mongoCollection.find();
 			 
 			 
 			 for(Document doc : docs) {
@@ -28,23 +28,15 @@ public class LoginDAO {
 				
 				 String name=(String) doc.get("userName");
 				 String password=(String) doc.get("userPassword");
-				 System.out.println(c.getName());
+				 System.out.println(customer.getName());
 				 System.out.println(name);
 		         System.out.println(password);
-		            if(name.equalsIgnoreCase(c.getName())& password.equalsIgnoreCase(c.getPassword()))
+		            if(name.equalsIgnoreCase(customer.getName())& password.equalsIgnoreCase(customer.getPassword()))
 		                status=true;
 				     
 		       
 		            }
-		        /* while (cursor.hasNext()) {
-		            DBObject obj = cursor.next();
-		            String name=(String) obj.get("userName");
-		            String password=(String) obj.get("userPassword");
-		            System.out.println(name);
-		            System.out.println(password);
-		            if(name!=null)
-		            	status=true;
-		         }*/
+		  
 		}
 		catch(Exception e){
 			System.out.println(e);
@@ -52,6 +44,4 @@ public class LoginDAO {
 
 		return status;  
 }
-
-	
 }

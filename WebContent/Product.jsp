@@ -34,8 +34,8 @@
 <form action="CartServlet" method="post">  
 
 	   <%
-  	   	ProductsService ss = new ProductsService();
-  	    List<Product> arrP = ss.selectAllProducts();
+  	   	ProductsService productsService = new ProductsService();
+  	    List<Product> list = productsService.selectAllProducts();
   	              
   	   %>
 
@@ -50,14 +50,14 @@
                 </tr>
             </thead>
              <tbody>
-                <%  if (arrP != null) {
-                	for (int i = 0; i < arrP.size(); i++){
+                <%  if (list != null) {
+                	for (int i = 0; i < list.size(); i++){
                 %>
                 <tr>
-                    <td><%= arrP.get(i).getpId()%></td>
-                    <td><%= arrP.get(i).getpName()%></td>
-                    <td><%= arrP.get(i).getpPrice()%></td>
-                    <td onclick="myFunction()"><a href="ProductServlet?oid=<%= arrP.get(i).getpId()%>&Pname=<%=arrP.get(i).getpName()%>&price=<%= arrP.get(i).getpPrice()%>">Buy</a></td>
+                    <td><%= list.get(i).getpId()%></td>
+                    <td><%= list.get(i).getpName()%></td>
+                    <td><%= list.get(i).getpPrice()%></td>
+                    <td onclick="myFunction()"><a href="ProductServlet?oid=<%= list.get(i).getpId()%>&Pname=<%=list.get(i).getpName()%>&price=<%= list.get(i).getpPrice()%>">Buy</a></td>
                    
                 </tr>
                 

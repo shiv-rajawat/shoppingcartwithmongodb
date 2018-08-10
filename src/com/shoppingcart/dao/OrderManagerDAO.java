@@ -14,27 +14,20 @@ import com.shoppingcart.model.Cart;
 import com.shoppingcart.model.Product;
 
 public class OrderManagerDAO {
-
-	
-	Cart c=new Cart();
 	
 	
-	public void insertOrders(Cart c) throws SQLException {
+	public void insertOrders(Cart cart) throws SQLException {
 		
 		try {
-			MongoClient mongo=new MongoClient("localhost",27017);
-			 MongoDatabase mydatabase = mongo.getDatabase("cochin");
-			 MongoCollection<Document> coll = mydatabase.getCollection("OrderDetails");
-			 FindIterable<Document> docs = coll.find();
+			MongoClient mongoClient=new MongoClient("localhost",27017);
+			 MongoDatabase mongoDatabase = mongoClient.getDatabase("cochin");
+			 MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("OrderDetails");
+			 FindIterable<Document> docs = mongoCollection.find();
 			 Document document=new Document();
-			 document.append("OID",  c.getOID());
-			 document.append("PNama",c.getPNama());
-			 document.append("TotalPrice",c.getTotalPrice());
-			 coll.insertOne(document);
-			 /*
-			 BasicDBObject docu = new BasicDBObject();
-			 docu.put("OID", c.getOID());*/
-		         
+			 document.append("OID",  cart.getOID());
+			 document.append("PNama",cart.getPNama());
+			 document.append("TotalPrice",cart.getTotalPrice());
+			 mongoCollection.insertOne(document);     
 		} 
 	  catch (Exception e) { 	
 		System.out.println("cannot insert orders");
@@ -42,25 +35,24 @@ public class OrderManagerDAO {
 	}
 	}
 	
-	
 	 public List<Cart> displayOrder() throws SQLException {
 
-		List<Cart> arrC=new ArrayList<Cart>();
+		List<Cart> list=new ArrayList<Cart>();
 		try {
 			
-			MongoClient mongo=new MongoClient("localhost",27017);
-			 MongoDatabase mydatabase = mongo.getDatabase("cochin");
-			 MongoCollection<Document> coll = mydatabase.getCollection("OrderDetails");
+			 MongoClient mongoClient=new MongoClient("localhost",27017);
+			 MongoDatabase mongoDatabase = mongoClient.getDatabase("cochin");
+			 MongoCollection<Document> coll = mongoDatabase.getCollection("OrderDetails");
 			 FindIterable<Document> docs = coll.find();
 			 for(Document doc : docs) {
 					Cart cart=new Cart();	
-					 int OID=(int) doc.get("OID");
-						 String PName=(String) doc.get("PNama");
-						 int Price=(int) doc.get("TotalPrice");
-						 cart.setOID(OID);
-						 cart.setPNama(PName);
-						 cart.setTotalPrice(Price); 
-				         arrC.add(cart);				
+					 int oId=(int) doc.get("OID");
+						 String pName=(String) doc.get("PNama");
+						 int price=(int) doc.get("TotalPrice");
+						 cart.setOID(oId);
+						 cart.setPNama(pName);
+						 cart.setTotalPrice(price); 
+				         list.add(cart);				
 				  }
 			 
 		
@@ -72,7 +64,7 @@ public class OrderManagerDAO {
 
 		} 
 		
-		return arrC;
+		return list;
 	}
 	 
 		public void clearOrders() {

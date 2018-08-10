@@ -9,10 +9,10 @@ import com.shoppingcart.model.Product;
 public class ProductsService {
 
 
-	ProductManagerDAO pm=new ProductManagerDAO();
+	ProductManagerDAO productManagerDAO=new ProductManagerDAO();
 
 	public List<Product> selectAllProducts() throws SQLException {
-		return pm.listProducts();
+		return productManagerDAO.listProducts();
 
 	}
 

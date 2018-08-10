@@ -2,14 +2,10 @@ package com.shoppingcart.model;
 
 public class Cart {
 
-public int OID;
-public int TotalPrice;
+private int OID;
+private int TotalPrice;
 private String PNama;
 
-
-public Cart() {
-	// TODO Auto-generated constructor stub
-}
 
 public int getOID() {
     return OID;

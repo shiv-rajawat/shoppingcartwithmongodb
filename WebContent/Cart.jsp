@@ -21,8 +21,8 @@
         
         <%
         
-        OrderManagerService oms=new OrderManagerService();
-        List<Cart> arrC = oms.displayOrder();
+        OrderManagerService orderManagerService=new OrderManagerService();
+        List<Cart> list= orderManagerService.displayOrder();
         	int totalprice=0;
         %>
         
@@ -36,15 +36,15 @@
             </thead>
             <tbody>
             
-                <%  if (arrC != null) {
-                	for (int i = 0; i < arrC.size(); i++){
+                <%  if (list != null) {
+                	for (int i = 0; i < list.size(); i++){
                 %>  
                 <tr>
-                    <td><%= arrC.get(i).getPNama() %></td>
-                    <td><%= arrC.get(i).getTotalPrice()%></td>
+                    <td><%= list.get(i).getPNama() %></td>
+                    <td><%= list.get(i).getTotalPrice()%></td>
                 </tr>
                 
-             <% totalprice+=arrC.get(i).getTotalPrice(); %>
+             <% totalprice+=list.get(i).getTotalPrice(); %>
                
             <%
                 }

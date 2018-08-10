@@ -37,21 +37,21 @@ public class ProductServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 int OID = Integer.parseInt(request.getParameter("oid"));
-		 String PNama =request.getParameter("Pname");
+		 int oId = Integer.parseInt(request.getParameter("oid"));
+		 String pName =request.getParameter("Pname");
 		 
-	        int TotalPrice = Integer.parseInt(request.getParameter("price"));
+	        int totalPrice = Integer.parseInt(request.getParameter("price"));
 	        
-	        Cart c=new Cart();
-	        c.setOID(OID);
-	        c.setPNama(PNama);
-	        c.setTotalPrice(TotalPrice);
-	        OrderManagerService oms=new OrderManagerService();
+	        Cart cart=new Cart();
+	        cart.setOID(oId);
+	        cart.setPNama(pName);
+	        cart.setTotalPrice(totalPrice);
+	        OrderManagerService orderManagerService=new OrderManagerService();
 	        
 		    try {
-				oms.insertOrder(c);
-				RequestDispatcher rd=request.getRequestDispatcher("Product.jsp");
-				rd.include(request,response);
+				orderManagerService.insertOrder(cart);
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("Product.jsp");
+				requestDispatcher.include(request,response);
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
@@ -72,13 +72,13 @@ public class ProductServlet extends HttpServlet {
 
 	 public void processRequest(HttpServletRequest request, HttpServletResponse response)  
 			    throws ServletException, IOException {  
-			ProductsService ss=new ProductsService();   
+			ProductsService productsService=new ProductsService();   
 	        try {
-	        	List<Product> arrPro = new ArrayList<Product>();
-				arrPro=ss.selectAllProducts();
-				RequestDispatcher rd=request.getRequestDispatcher("Product.jsp");
-				RequestDispatcher rd2=request.getRequestDispatcher("CartServlet");
-				rd.include(request,response);
+	        	List<Product> list = new ArrayList<Product>();
+				list=productsService.selectAllProducts();
+				RequestDispatcher requestDispatcher=request.getRequestDispatcher("Product.jsp");
+				RequestDispatcher requestDispatcher2=request.getRequestDispatcher("CartServlet");
+				requestDispatcher.include(request,response);
 				
 			} catch (SQLException e) {
 				System.out.println("cannot list products");
