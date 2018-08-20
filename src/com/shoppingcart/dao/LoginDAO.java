@@ -17,7 +17,9 @@ public class LoginDAO {
 		boolean status=false; 
 			
 		try{  
-			 MongoClient mongoClient=new MongoClient("localhost",27017);
+				
+			 MongoClient mongoClient=new MongoClient();
+			 
 			 MongoDatabase mongoDatabase = mongoClient.getDatabase("cochin");
 			 MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("UserDetail");
 			 FindIterable<Document> docs = mongoCollection.find();
@@ -28,13 +30,11 @@ public class LoginDAO {
 				
 				 String name=(String) doc.get("userName");
 				 String password=(String) doc.get("userPassword");
-				 System.out.println(customer.getName());
-				 System.out.println(name);
-		         System.out.println(password);
-		            if(name.equalsIgnoreCase(customer.getName())& password.equalsIgnoreCase(customer.getPassword()))
+
+				 
+				 
+            if(name.equalsIgnoreCase(customer.getName())& password.equalsIgnoreCase(customer.getPassword()))
 		                status=true;
-				     
-		       
 		            }
 		  
 		}

@@ -5,7 +5,10 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <name>shoopping</name>
+  
+  
   <build>
+  
     <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
@@ -24,6 +27,9 @@
           <warSourceDirectory>WebContent</warSourceDirectory>
         </configuration>
       </plugin>
+
     </plugins>
+ 
   </build>
+
 </project>
